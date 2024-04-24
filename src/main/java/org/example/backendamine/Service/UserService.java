@@ -12,4 +12,5 @@ public interface UserService {
     UserResponse createUser(UserRequest userRequest);
     User getUserById(long userId);
     void deleteUser(Long id);
+    User getUserByMatricule(long matricule);
 }

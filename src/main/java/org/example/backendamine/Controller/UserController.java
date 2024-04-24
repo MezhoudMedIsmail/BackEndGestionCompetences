@@ -55,6 +55,20 @@ public class UserController {
                 .build();
         return new ResponseEntity<UserResponse>(us, HttpStatus.OK);
     }
+    @GetMapping(path = "/{matricule}")
+    public ResponseEntity<UserResponse> getUserByMatricule(@PathVariable long matricule) {
+        User user = userClientService.getUserByMatricule(matricule);
+        UserResponse us =UserResponse.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .region(user.getRegion())
+                .department(user.getDepartment())
+                .matricule(user.getMatricule())
+                .phone(user.getPhone())
+                .build();
+        return new ResponseEntity<UserResponse>(us, HttpStatus.OK);
+    }
     @PutMapping(path = "/{id}")
     public ResponseEntity<UserResponse> updateUser(@PathVariable long id, @RequestBody UserRequest user) {
         User u = new User();

@@ -76,6 +76,11 @@ User user = User.builder()
         userRepository.deleteById(id);
     }
 
+    @Override
+    public User getUserByMatricule(long matricule) {
+        return userRepository.findByMatricule(matricule);
+    }
+
     private UserResponse mapToUserResponse(User user) {
         return UserResponse.builder()
                 .id(user.getId())
