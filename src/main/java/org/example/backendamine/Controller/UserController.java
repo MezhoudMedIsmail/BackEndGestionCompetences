@@ -55,7 +55,7 @@ public class UserController {
                 .build();
         return new ResponseEntity<UserResponse>(us, HttpStatus.OK);
     }
-    @GetMapping(path = "/{matricule}")
+    @GetMapping(path = "/matricule/{matricule}")
     public ResponseEntity<UserResponse> getUserByMatricule(@PathVariable long matricule) {
         User user = userClientService.getUserByMatricule(matricule);
         UserResponse us =UserResponse.builder()
