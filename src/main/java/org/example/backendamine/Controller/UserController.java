@@ -34,6 +34,13 @@ public class UserController {
     public ResponseEntity<List<UserResponse>> getUserClient() {
         return new ResponseEntity<List<UserResponse>>(userClientService.getUser(), HttpStatus.OK);
     }
+
+    @PostMapping("/create")
+    public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
+        UserResponse userResponse = userClientService.createUser(userRequest);
+        return ResponseEntity.ok(userResponse);
+    }
+
     @GetMapping(path = "/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable long id) {
         User user = userClientService.getUserById(id);
@@ -59,6 +66,11 @@ public class UserController {
         u.setMatricule(user.getMatricule());
         u.setPhone(user.getPhone());
         return new ResponseEntity<UserResponse>(userClientService.updateUser(id, u), HttpStatus.ACCEPTED);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userClientService.deleteUser(id);
+        return ResponseEntity.ok().build(); // Returns an HTTP 200 OK with no body.
     }
     @PostMapping("/uploadFile/{userId}")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @PathVariable long userId) {
