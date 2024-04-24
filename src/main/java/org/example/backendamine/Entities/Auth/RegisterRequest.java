@@ -17,7 +17,7 @@ public class RegisterRequest {
     private String email;
     private String region;
     private String department;
-    private String matricule;
+    private Long matricule;
     private String phone;
     private boolean status;
     private String password;
