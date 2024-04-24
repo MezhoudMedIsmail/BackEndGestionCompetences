@@ -13,4 +13,8 @@ public class UserRequest {
     private String firstName;
     private String lastName;
     private String email;
+    private String region;
+    private String department;
+    private String matricule;
+    private String phone;
 }

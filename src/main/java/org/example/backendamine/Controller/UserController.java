@@ -41,6 +41,10 @@ public class UserController {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
+                .region(user.getRegion())
+                .department(user.getDepartment())
+                .matricule(user.getMatricule())
+                .phone(user.getPhone())
                 .build();
         return new ResponseEntity<UserResponse>(us, HttpStatus.OK);
     }
@@ -50,6 +54,10 @@ public class UserController {
         u.setFirstName(user.getFirstName());
         u.setLastName(user.getLastName());
         u.setEmail(user.getEmail());
+        u.setRegion(user.getRegion());
+        u.setDepartment(user.getDepartment());
+        u.setMatricule(user.getMatricule());
+        u.setPhone(user.getPhone());
         return new ResponseEntity<UserResponse>(userClientService.updateUser(id, u), HttpStatus.ACCEPTED);
     }
     @PostMapping("/uploadFile/{userId}")

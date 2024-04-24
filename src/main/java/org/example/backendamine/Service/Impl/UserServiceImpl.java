@@ -34,6 +34,10 @@ public class UserServiceImpl implements UserService {
                 .firstName(userRes.getFirstName())
                 .lastName(userRes.getLastName())
                 .email(userRes.getEmail())
+                .region(userRes.getRegion())
+                .department(userRes.getDepartment())
+                .matricule(userRes.getMatricule())
+                .phone(userRes.getPhone())
                 .build();
     }
 
@@ -48,6 +52,10 @@ public class UserServiceImpl implements UserService {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
+                .region(user.getRegion())
+                .department(user.getDepartment())
+                .matricule(user.getMatricule())
+                .phone(user.getPhone())
                 .build();
     }
 }
