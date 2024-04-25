@@ -1,16 +1,17 @@
 package org.example.backendamine.Entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

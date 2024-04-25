@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.backendamine.Entities.Role;
 
 @Data
 @Builder
@@ -17,4 +18,8 @@ public class UserRequest {
     private String department;
     private Long matricule;
     private String phone;
+    private boolean status;
+    private String password;
+    private Role role;
+
 }

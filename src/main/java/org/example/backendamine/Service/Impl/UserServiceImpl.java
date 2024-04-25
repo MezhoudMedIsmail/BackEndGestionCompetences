@@ -2,11 +2,15 @@ package org.example.backendamine.Service.Impl;
 
 
 import lombok.RequiredArgsConstructor;
+import org.example.backendamine.Entities.Auth.AuthenticationResponse;
+import org.example.backendamine.Entities.Auth.RegisterRequest;
 import org.example.backendamine.Entities.Response.UserRequest;
 import org.example.backendamine.Entities.Response.UserResponse;
+import org.example.backendamine.Entities.Role;
 import org.example.backendamine.Entities.User;
 import org.example.backendamine.Repository.UserRepository;
 import org.example.backendamine.Service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +20,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public List<UserResponse> getUser() {
         return userRepository.findAll().stream()
@@ -44,15 +50,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse createUser(UserRequest userRequest) {
-User user = User.builder()
-                .firstName(userRequest.getFirstName())
-                .lastName(userRequest.getLastName())
-                .email(userRequest.getEmail())
-                .region(userRequest.getRegion())
-                .department(userRequest.getDepartment())
-                .matricule(userRequest.getMatricule())
-                .phone(userRequest.getPhone())
-                .build();
+        var user = User.builder()
+            .email(userRequest.getEmail())
+            .firstName(userRequest.getFirstName())
+            .lastName(userRequest.getLastName())
+            .region(userRequest.getRegion())
+            .department(userRequest.getDepartment())
+            .matricule(userRequest.getMatricule())
+            .phone(userRequest.getPhone())
+            .status(true)
+            .password(passwordEncoder.encode(userRequest.getPassword()))
+            .role(Role.USER)
+            .build();
         User u = userRepository.save(user);
         return UserResponse.builder()
                 .id(u.getId())
@@ -63,6 +72,7 @@ User user = User.builder()
                 .department(u.getDepartment())
                 .matricule(u.getMatricule())
                 .phone(u.getPhone())
+                .role(u.getRole())
                 .build();
     }
 
