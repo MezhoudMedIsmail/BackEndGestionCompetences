@@ -20,7 +20,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public Feedback updateFeedback(Long id, Feedback feedback) {
+    public Feedback updateFeedback(long id, Feedback feedback) {
         Feedback existingFeedback = feedbackRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Feedback not found"));
         existingFeedback.setComment(feedback.getComment());
@@ -31,7 +31,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public Feedback getFeedbackById(Long id) {
+    public Feedback getFeedbackById(long id) {
         return feedbackRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Feedback not found"));
     }
@@ -42,7 +42,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public void deleteFeedback(Long id) {
+    public void deleteFeedback(long id) {
         feedbackRepository.deleteById(id);
     }
 }

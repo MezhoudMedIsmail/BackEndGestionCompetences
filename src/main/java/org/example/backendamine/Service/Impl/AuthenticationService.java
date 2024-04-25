@@ -8,7 +8,6 @@ import org.example.backendamine.Entities.Auth.RegisterRequest;
 import org.example.backendamine.Entities.Role;
 import org.example.backendamine.Entities.User;
 import org.example.backendamine.Repository.UserRepository;
-import org.example.backendamine.Service.EmailService;
 import org.example.backendamine.config.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +21,6 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    private final EmailService emailService;
     public AuthenticationResponse register(RegisterRequest registerRequest) {
         var user = User.builder()
                 .email(registerRequest.getEmail())
@@ -37,7 +35,6 @@ public class AuthenticationService {
                 .role(Role.USER)
                 .build();
         User u = utilisateurRepository.save(user);
-        emailService.sendEmailWithTemplate(u);
         var jwt = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwt).build();
     }

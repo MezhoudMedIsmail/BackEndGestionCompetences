@@ -1,4 +1,5 @@
 package org.example.backendamine.Controller;
+import lombok.RequiredArgsConstructor;
 import org.example.backendamine.Entities.Theme;
 import org.example.backendamine.Service.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/theme")
+@RequiredArgsConstructor
 public class ThemeController {
 
-    @Autowired
-    private ThemeService themeService;
+
+    private final ThemeService themeService;
 
     @PostMapping
     public ResponseEntity<Theme> createTheme(@RequestBody Theme theme) {
@@ -20,12 +22,12 @@ public class ThemeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Theme> updateTheme(@PathVariable Long id, @RequestBody Theme theme) {
+    public ResponseEntity<Theme> updateTheme(@PathVariable long id, @RequestBody Theme theme) {
         return ResponseEntity.ok(themeService.updateTheme(id, theme));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Theme> getThemeById(@PathVariable Long id) {
+    public ResponseEntity<Theme> getThemeById(@PathVariable long id) {
         return ResponseEntity.ok(themeService.getThemeById(id));
     }
 
@@ -35,8 +37,22 @@ public class ThemeController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTheme(@PathVariable Long id) {
+    public void deleteTheme(@PathVariable long id) {
         themeService.deleteTheme(id);
+    }
+    @PutMapping("question/{themeId}/{questionId}")
+    public ResponseEntity<String> assignQuestionToTheme(
+            @PathVariable long questionId,
+            @PathVariable long themeId) {
+        themeService.assignQuestionToTheme(questionId,themeId);
+        return ResponseEntity.ok("Question assigned to theme successfully");
+    }
+    @PutMapping("user/{themeId}/{userId}")
+    public ResponseEntity<String> assignUserToTheme(
+            @PathVariable long userId,
+            @PathVariable long themeId) {
+        themeService.assignUserToTheme(userId,themeId);
+        return ResponseEntity.ok("Question assigned to theme successfully");
     }
 }
 

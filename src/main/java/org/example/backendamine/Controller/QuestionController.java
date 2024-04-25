@@ -19,12 +19,12 @@ public class QuestionController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Question> updateQuestion(@PathVariable Long id, @RequestBody Question question) {
+    public ResponseEntity<Question> updateQuestion(@PathVariable long id, @RequestBody Question question) {
         return ResponseEntity.ok(questionService.updateQuestion(id, question));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
+    public ResponseEntity<Question> getQuestionById(@PathVariable long id) {
         return ResponseEntity.ok(questionService.getQuestionById(id));
     }
 
@@ -34,9 +34,12 @@ public class QuestionController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteQuestion(@PathVariable Long id) {
+    public void deleteQuestion(@PathVariable long id) {
         questionService.deleteQuestion(id);
     }
+
+
+
 
 
 }

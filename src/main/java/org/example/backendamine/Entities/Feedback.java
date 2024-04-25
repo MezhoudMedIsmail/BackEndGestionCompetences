@@ -17,7 +17,7 @@ import java.util.Date;
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    long id;
     String comment;
     @Enumerated(EnumType.STRING)
     TypeFeedback note;

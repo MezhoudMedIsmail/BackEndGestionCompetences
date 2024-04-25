@@ -15,12 +15,10 @@ import lombok.experimental.FieldDefaults;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    long id;
     String name;
     String text;
     @Enumerated(EnumType.STRING)
     TypeResponse response;
 
-    @ManyToOne
-    private Theme theme;
 }

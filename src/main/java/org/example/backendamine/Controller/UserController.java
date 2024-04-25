@@ -6,7 +6,6 @@ import org.example.backendamine.Entities.Response.UploadFileResponse;
 import org.example.backendamine.Entities.Response.UserRequest;
 import org.example.backendamine.Entities.Response.UserResponse;
 import org.example.backendamine.Entities.User;
-import org.example.backendamine.Service.EmailService;
 import org.example.backendamine.Service.FileService;
 import org.example.backendamine.Service.UserService;
 import org.springframework.core.io.ByteArrayResource;
@@ -28,7 +27,6 @@ import java.util.List;
 public class UserController {
     private final UserService userClientService;
     private final FileService dbFileStorageService;
-    private final EmailService emailService;
 
     @GetMapping
     public ResponseEntity<List<UserResponse>> getUserClient() {
@@ -103,11 +101,5 @@ public class UserController {
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(dbFile.getFileType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.getFileName() + "\"")
                 .body(new ByteArrayResource(dbFile.getData()));
-    }
-    @PostMapping("/mail/{userId}")
-    public ResponseEntity<String> sendMail(@PathVariable long userId) {
-        User user = userClientService.getUserById(userId);
-        emailService.sendEmailWithTemplate(user);
-        return new ResponseEntity<String>("Mail sent", HttpStatus.OK);
     }
 }

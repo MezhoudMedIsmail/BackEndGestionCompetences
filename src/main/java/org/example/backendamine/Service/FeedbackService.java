@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface FeedbackService {
     Feedback createFeedback(Feedback feedback);
-    Feedback updateFeedback(Long id, Feedback feedback);
-    Feedback getFeedbackById(Long id);
+    Feedback updateFeedback(long id, Feedback feedback);
+    Feedback getFeedbackById(long id);
     List<Feedback> getAllFeedback();
-    void deleteFeedback(Long id);
+    void deleteFeedback(long id);
 }
