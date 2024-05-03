@@ -29,7 +29,7 @@ public class UserController {
     private final FileService dbFileStorageService;
 
     @GetMapping
-    public ResponseEntity<List<UserResponse>> getUserClient() {
+    public ResponseEntity<List<UserResponse>> getUser() {
         return new ResponseEntity<List<UserResponse>>(userClientService.getUser(), HttpStatus.OK);
     }
 
