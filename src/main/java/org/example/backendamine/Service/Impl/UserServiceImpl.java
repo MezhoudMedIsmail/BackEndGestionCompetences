@@ -105,6 +105,7 @@ public class UserServiceImpl implements UserService {
                 .department(user.getDepartment())
                 .matricule(user.getMatricule())
                 .phone(user.getPhone())
+                .role(user.getRole())
                 .build();
     }
 }
