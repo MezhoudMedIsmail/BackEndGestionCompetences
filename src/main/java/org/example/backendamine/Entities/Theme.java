@@ -23,6 +23,6 @@ public class Theme {
     @OneToMany
     List<Question> questions;
 
-    @ManyToMany
-    List<User> user;
+    @Enumerated(EnumType.STRING)
+    TypeDepartement departement;
 }

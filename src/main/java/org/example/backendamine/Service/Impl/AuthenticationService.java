@@ -6,6 +6,7 @@ import org.example.backendamine.Entities.Auth.AuthenticationRequest;
 import org.example.backendamine.Entities.Auth.AuthenticationResponse;
 import org.example.backendamine.Entities.Auth.RegisterRequest;
 import org.example.backendamine.Entities.Role;
+import org.example.backendamine.Entities.TypeDepartement;
 import org.example.backendamine.Entities.User;
 import org.example.backendamine.Repository.UserRepository;
 import org.example.backendamine.config.JwtService;
@@ -27,7 +28,7 @@ public class AuthenticationService {
                 .firstName(registerRequest.getFirstName())
                 .lastName(registerRequest.getLastName())
                 .region(registerRequest.getRegion())
-                .department(registerRequest.getDepartment())
+                .departement(TypeDepartement.valueOf(registerRequest.getDepartment()))
                 .matricule(registerRequest.getMatricule())
                 .phone(registerRequest.getPhone())
                 .status(true)

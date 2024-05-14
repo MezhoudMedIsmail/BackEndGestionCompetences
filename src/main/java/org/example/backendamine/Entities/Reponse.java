@@ -1,11 +1,8 @@
 package org.example.backendamine.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.util.List;
 
 @Entity
 @Getter
@@ -15,19 +12,11 @@ import java.util.List;
 @Builder
 @EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Question {
+public class Reponse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String name;
-    String text;
-
-    @OneToMany
-    List<Reponse> reponse;
-
+    String reponse;
     @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "theme_id", nullable = false)
-    private Theme theme;
-
+    User user;
 }

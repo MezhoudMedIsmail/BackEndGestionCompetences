@@ -1,5 +1,5 @@
 package org.example.backendamine.Entities;
 
 public enum TypeFeedback {
-    ONE, TWO, THREE, FOUR, FIVE
+    NO,NOT_ENOUGH,OKAY,GOOD,EXCELLENT
 }

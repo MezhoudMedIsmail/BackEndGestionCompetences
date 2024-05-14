@@ -5,6 +5,7 @@ import org.example.backendamine.Entities.FileEntity;
 import org.example.backendamine.Entities.Response.UploadFileResponse;
 import org.example.backendamine.Entities.Response.UserRequest;
 import org.example.backendamine.Entities.Response.UserResponse;
+import org.example.backendamine.Entities.TypeDepartement;
 import org.example.backendamine.Entities.User;
 import org.example.backendamine.Service.FileService;
 import org.example.backendamine.Service.UserService;
@@ -47,7 +48,7 @@ public class UserController {
                 .lastName(user.getLastName())
                 .email(user.getEmail())
                 .region(user.getRegion())
-                .department(user.getDepartment())
+                .departement(user.getDepartement().name())
                 .matricule(user.getMatricule())
                 .phone(user.getPhone())
                 .build();
@@ -61,7 +62,7 @@ public class UserController {
                 .lastName(user.getLastName())
                 .email(user.getEmail())
                 .region(user.getRegion())
-                .department(user.getDepartment())
+                .departement(user.getDepartement().name())
                 .matricule(user.getMatricule())
                 .phone(user.getPhone())
                 .build();
@@ -74,7 +75,7 @@ public class UserController {
         u.setLastName(user.getLastName());
         u.setEmail(user.getEmail());
         u.setRegion(user.getRegion());
-        u.setDepartment(user.getDepartment());
+        u.setDepartement(TypeDepartement.valueOf(user.getDepartement()));
         u.setMatricule(user.getMatricule());
         u.setPhone(user.getPhone());
         return new ResponseEntity<UserResponse>(userClientService.updateUser(id, u), HttpStatus.ACCEPTED);

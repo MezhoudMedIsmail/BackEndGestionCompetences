@@ -1,6 +1,7 @@
 package org.example.backendamine.Service.Impl;
 
 import org.example.backendamine.Entities.Feedback;
+import org.example.backendamine.Entities.TypeFeedback;
 import org.example.backendamine.Repository.FeedbackRepository;
 import org.example.backendamine.Service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public Feedback createFeedback(Feedback feedback) {
+        feedback.setNote(TypeFeedback.valueOf(feedback.getNote().name()));
         return feedbackRepository.save(feedback);
     }
 

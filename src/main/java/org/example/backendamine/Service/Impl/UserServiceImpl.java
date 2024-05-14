@@ -7,6 +7,7 @@ import org.example.backendamine.Entities.Auth.RegisterRequest;
 import org.example.backendamine.Entities.Response.UserRequest;
 import org.example.backendamine.Entities.Response.UserResponse;
 import org.example.backendamine.Entities.Role;
+import org.example.backendamine.Entities.TypeDepartement;
 import org.example.backendamine.Entities.User;
 import org.example.backendamine.Repository.UserRepository;
 import org.example.backendamine.Service.UserService;
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService {
         u.setLastName(user.getLastName());
         u.setEmail(user.getEmail());
         u.setRegion(user.getRegion());
-        u.setDepartment(user.getDepartment());
+        u.setDepartement(user.getDepartement());
         u.setMatricule(user.getMatricule());
         u.setPhone(user.getPhone());
         User userRes =  userRepository.save(u);
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService {
                 .lastName(userRes.getLastName())
                 .email(userRes.getEmail())
                 .region(userRes.getRegion())
-                .department(userRes.getDepartment())
+                .departement(userRes.getDepartement().name())
                 .matricule(userRes.getMatricule())
                 .phone(userRes.getPhone())
                 .build();
@@ -59,7 +60,7 @@ public class UserServiceImpl implements UserService {
             .firstName(userRequest.getFirstName())
             .lastName(userRequest.getLastName())
             .region(userRequest.getRegion())
-            .department(userRequest.getDepartment())
+            .departement(TypeDepartement.valueOf(userRequest.getDepartement()))
             .matricule(userRequest.getMatricule())
             .phone(userRequest.getPhone())
             .status(true)
@@ -73,7 +74,7 @@ public class UserServiceImpl implements UserService {
                 .lastName(u.getLastName())
                 .email(u.getEmail())
                 .region(u.getRegion())
-                .department(u.getDepartment())
+                .departement(u.getDepartement().name())
                 .matricule(u.getMatricule())
                 .phone(u.getPhone())
                 .role(u.getRole())
@@ -102,7 +103,7 @@ public class UserServiceImpl implements UserService {
                 .lastName(user.getLastName())
                 .email(user.getEmail())
                 .region(user.getRegion())
-                .department(user.getDepartment())
+                .departement(user.getDepartement().name())
                 .matricule(user.getMatricule())
                 .phone(user.getPhone())
                 .role(user.getRole())

@@ -16,7 +16,7 @@ public class UserResponse {
     private String lastName;
     private String email;
     private String region;
-    private String department;
+    private String departement;
     private Long matricule;
     private String phone;
     private Role role;

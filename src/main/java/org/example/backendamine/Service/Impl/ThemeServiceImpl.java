@@ -2,9 +2,7 @@ package org.example.backendamine.Service.Impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.example.backendamine.Entities.Question;
-import org.example.backendamine.Entities.Theme;
-import org.example.backendamine.Entities.User;
+import org.example.backendamine.Entities.*;
 import org.example.backendamine.Repository.QuestionRepository;
 import org.example.backendamine.Repository.ThemeRepository;
 import org.example.backendamine.Repository.UserRepository;
@@ -13,7 +11,10 @@ import org.example.backendamine.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +36,7 @@ public class ThemeServiceImpl implements ThemeService{
                 .orElseThrow(() -> new RuntimeException("Theme not found"));
         existingTheme.setTitle(theme.getTitle());
         existingTheme.setQuestions(theme.getQuestions());
-        existingTheme.setUser(theme.getUser());
+        existingTheme.setDepartement(TypeDepartement.valueOf(theme.getDepartement().name()));
         return themeRepository.save(existingTheme);
     }
 
@@ -67,13 +68,23 @@ public class ThemeServiceImpl implements ThemeService{
     }
 
     @Override
-    public void assignUserToTheme(long userId, long themeId) {
-        User user =  userRepository.findById(userId).orElse(null);
+    public List<User> getUsersByTheme(Long themeId) {
+        // Check if the theme exists
         Theme theme = themeRepository.findById(themeId)
-                .orElseThrow(() -> new EntityNotFoundException("Theme not found"));
-        theme.getUser().add(user);
-        themeRepository.save(theme);
+                .orElseThrow(() -> new RuntimeException("Theme not found"));
+
+        // Fetch questions associated with the theme
+        List<Question> questions = questionRepository.findByThemeId(theme.getId());
+
+        // Collect all unique users from these questions' responses
+
+        // Convert the set to a list and return
+        return questions.stream()
+                .flatMap(question -> question.getReponse().stream())
+                .map(Reponse::getUser).distinct().collect(Collectors.toList());
     }
+
+
 
 }
 

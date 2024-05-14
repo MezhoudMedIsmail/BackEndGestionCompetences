@@ -14,9 +14,9 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    @PostMapping
-    public ResponseEntity<Question> createQuestion(@RequestBody Question question) {
-        return ResponseEntity.ok(questionService.createQuestion(question));
+    @PostMapping("/{id}")
+    public ResponseEntity<Question> createQuestion(@RequestBody Question question,@PathVariable long id) {
+        return ResponseEntity.ok(questionService.createQuestion(question,id));
     }
 
     @PutMapping("/{id}")
@@ -39,7 +39,10 @@ public class QuestionController {
         questionService.deleteQuestion(id);
     }
 
-
+    @GetMapping("/theme/{themeId}")
+    public List<Question> getQuestionsByTheme(@PathVariable long themeId) {
+        return questionService.getQuestionsByThemeId(themeId);
+    }
 
 
 
