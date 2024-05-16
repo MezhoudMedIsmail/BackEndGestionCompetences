@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
             .firstName(userRequest.getFirstName())
             .lastName(userRequest.getLastName())
             .region(userRequest.getRegion())
-            .departement(TypeDepartement.valueOf(userRequest.getDepartement()))
+            .departement(userRequest.getDepartement())
             .matricule(userRequest.getMatricule())
             .phone(userRequest.getPhone())
             .status(true)

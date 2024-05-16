@@ -1,5 +1,7 @@
 package org.example.backendamine.Controller;
 import org.example.backendamine.Entities.Question;
+import org.example.backendamine.Entities.Reponse;
+import org.example.backendamine.Entities.Response.ReponseRequest;
 import org.example.backendamine.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +45,9 @@ public class QuestionController {
     public List<Question> getQuestionsByTheme(@PathVariable long themeId) {
         return questionService.getQuestionsByThemeId(themeId);
     }
-
-
+    @PostMapping("/reponse/{userId}")
+    public ResponseEntity<List<Reponse>> saveReponses(@RequestBody List<ReponseRequest> reponses, @PathVariable long userId) {
+        return ResponseEntity.ok(questionService.saveReponses(reponses,userId));
+    }
 
 }

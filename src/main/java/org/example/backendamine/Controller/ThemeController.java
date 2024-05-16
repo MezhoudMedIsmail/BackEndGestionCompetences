@@ -76,6 +76,5 @@ public class ThemeController {
             return ResponseEntity.notFound().build();
         }
     }
-
 }
 

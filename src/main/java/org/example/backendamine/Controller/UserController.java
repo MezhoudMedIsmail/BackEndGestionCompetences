@@ -75,7 +75,7 @@ public class UserController {
         u.setLastName(user.getLastName());
         u.setEmail(user.getEmail());
         u.setRegion(user.getRegion());
-        u.setDepartement(TypeDepartement.valueOf(user.getDepartement()));
+        u.setDepartement(user.getDepartement());
         u.setMatricule(user.getMatricule());
         u.setPhone(user.getPhone());
         return new ResponseEntity<UserResponse>(userClientService.updateUser(id, u), HttpStatus.ACCEPTED);

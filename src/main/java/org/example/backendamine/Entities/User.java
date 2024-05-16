@@ -24,9 +24,11 @@ public class User implements UserDetails {
     Long id;
     String firstName;
     String lastName;
+    @Column(unique = true)
     String email;
     String password;
     String region;
+    @Column(nullable = true)
     @Enumerated(EnumType.STRING)
     TypeDepartement departement;
     long matricule;

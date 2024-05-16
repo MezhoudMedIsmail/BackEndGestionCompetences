@@ -20,7 +20,7 @@ public class Theme {
     long id;
     String title;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Question> questions;
 
     @Enumerated(EnumType.STRING)

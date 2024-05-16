@@ -22,7 +22,7 @@ public class Question {
     String name;
     String text;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Reponse> reponse;
 
     @ManyToOne

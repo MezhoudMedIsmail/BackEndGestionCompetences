@@ -28,7 +28,7 @@ public class AuthenticationService {
                 .firstName(registerRequest.getFirstName())
                 .lastName(registerRequest.getLastName())
                 .region(registerRequest.getRegion())
-                .departement(TypeDepartement.valueOf(registerRequest.getDepartment()))
+                .departement(TypeDepartement.valueOf(registerRequest.getDepartement()))
                 .matricule(registerRequest.getMatricule())
                 .phone(registerRequest.getPhone())
                 .status(true)

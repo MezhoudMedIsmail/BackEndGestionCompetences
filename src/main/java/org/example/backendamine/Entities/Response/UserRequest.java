@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.backendamine.Entities.Role;
+import org.example.backendamine.Entities.TypeDepartement;
 
 @Data
 @Builder
@@ -15,7 +16,7 @@ public class UserRequest {
     private String lastName;
     private String email;
     private String region;
-    private String departement;
+    private TypeDepartement departement;
     private Long matricule;
     private String phone;
     private boolean status;
