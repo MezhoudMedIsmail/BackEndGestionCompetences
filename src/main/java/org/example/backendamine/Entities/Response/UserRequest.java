@@ -21,6 +21,6 @@ public class UserRequest {
     private String phone;
     private boolean status;
     private String password;
-    private Role role;
+    private String role;
 
 }

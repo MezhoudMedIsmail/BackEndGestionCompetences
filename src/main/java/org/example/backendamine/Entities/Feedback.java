@@ -19,8 +19,7 @@ public class Feedback {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String comment;
-    @Enumerated(EnumType.STRING)
-    TypeFeedback note;
+    String note;
     Date date;
     String title_formation;
 }

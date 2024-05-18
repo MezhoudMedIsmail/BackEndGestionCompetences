@@ -17,7 +17,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public Feedback createFeedback(Feedback feedback) {
-        feedback.setNote(TypeFeedback.valueOf(feedback.getNote().name()));
+        feedback.setNote(feedback.getNote());
         return feedbackRepository.save(feedback);
     }
 
