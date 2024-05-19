@@ -4,11 +4,13 @@ package org.example.backendamine.Service.Impl;
 import lombok.RequiredArgsConstructor;
 import org.example.backendamine.Entities.Auth.AuthenticationResponse;
 import org.example.backendamine.Entities.Auth.RegisterRequest;
+import org.example.backendamine.Entities.FileEntity;
 import org.example.backendamine.Entities.Response.UserRequest;
 import org.example.backendamine.Entities.Response.UserResponse;
 import org.example.backendamine.Entities.Role;
 import org.example.backendamine.Entities.TypeDepartement;
 import org.example.backendamine.Entities.User;
+import org.example.backendamine.Repository.FileRepository;
 import org.example.backendamine.Repository.UserRepository;
 import org.example.backendamine.Service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +24,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
+    private final FileRepository fileRepository;
     @Override
     public List<UserResponse> getUser() {
         return userRepository.findAll().stream()
@@ -88,6 +90,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long id) {
+        FileEntity fileEntity = fileRepository.findByUserId(id).orElseThrow();
+        fileRepository.deleteById(fileEntity.getId());
         userRepository.deleteById(id);
     }
 

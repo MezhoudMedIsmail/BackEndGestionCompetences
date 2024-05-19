@@ -20,7 +20,7 @@ public class FileEntity {
     String fileName;
 
     String fileType;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     User user;
     @Lob @Basic(fetch = FetchType.LAZY)
     @Column(length=100000)

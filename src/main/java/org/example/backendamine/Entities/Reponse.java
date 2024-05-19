@@ -18,6 +18,6 @@ public class Reponse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String reponse;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     User user;
 }
