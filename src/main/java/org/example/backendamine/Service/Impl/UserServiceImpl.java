@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -90,8 +91,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long id) {
-        FileEntity fileEntity = fileRepository.findByUserId(id).orElseThrow();
-        fileRepository.deleteById(fileEntity.getId());
+        Optional<FileEntity> fileEntity = fileRepository.findByUserId(id);
+        fileEntity.ifPresent(entity -> fileRepository.deleteById(entity.getId()));
         userRepository.deleteById(id);
     }
 
